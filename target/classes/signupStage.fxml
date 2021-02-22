@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane prefHeight="558.0" prefWidth="607.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignupStage">
+    <stylesheets>
+        <URL value="@loginStyle.css" />
+    </stylesheets>
+    <children>
+        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="607.0" styleClass="my_pane">
+            <children>
+                <HBox prefHeight="28.0" prefWidth="680.0" styleClass="title-bar">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="387.0" styleClass="title" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="JavaFX application Test">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets bottom="20.0" />
+                                    </padding></Label>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="28.0">
+                            <children>
+                                <Label alignment="CENTER" onMouseClicked="#minimize" prefHeight="25.0" prefWidth="30.0" styleClass="close-button" text="_" textAlignment="RIGHT">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                    <effect>
+                                        <DropShadow />
+                                    </effect>
+                                </Label>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" />
+                            </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="24.0">
+                            <children>
+                                <Label onMouseClicked="#close" styleClass="close-button" text="x">
+                                    <effect>
+                                        <DropShadow />
+                                    </effect>
+                                </Label>
+                            </children>
+                            <padding>
+                                <Insets bottom="12.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </HBox>
+                <BorderPane prefHeight="451.0" prefWidth="442.0" style="-fx-background-color: white;">
+                    <top>
+                        <HBox alignment="CENTER" prefHeight="105.0" prefWidth="442.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="69.0" prefWidth="259.0" style="-fx-font-size: 30; -fx-font-weight: bold;" text="GAME SIGN UP" textAlignment="CENTER">
+                                    <effect>
+                                        <DropShadow height="27.07" radius="6.965" width="2.79" />
+                                    </effect></Label>
+                            </children>
+                        </HBox>
+                    </top>
+                    <bottom>
+                        <HBox alignment="CENTER" prefHeight="97.0" prefWidth="442.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <GridPane prefHeight="149.0" prefWidth="340.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Button fx:id="btnLogin" mnemonicParsing="false" onMouseClicked="#login" prefHeight="58.0" prefWidth="149.0" styleClass="btn" text="ĐĂNG NHẬP" textFill="RED" />
+                                        <Button fx:id="btnSignup" mnemonicParsing="false" onMouseClicked="#signup" prefHeight="58.0" prefWidth="143.0" styleClass="btn" text="ĐĂNG KÝ" textFill="RED" GridPane.columnIndex="1" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </HBox>
+                    </bottom>
+               <left>
+                        <GridPane prefHeight="249.0" prefWidth="355.0" BorderPane.alignment="CENTER">
+                            <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="41.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="14.0" />
+                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="341.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="94.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <PasswordField fx:id="txtPassword" prefHeight="50.0" prefWidth="254.0" promptText="Nhập mật khẩu" styleClass="txtField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <TextField fx:id="txtUsername" prefHeight="50.0" prefWidth="254.0" promptText="Nhập username" styleClass="txtField" GridPane.columnIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" />
+                           </GridPane.margin></TextField>
+                        <PasswordField fx:id="txtPasswordConfirm" layoutX="151.0" layoutY="70.0" prefHeight="50.0" prefWidth="254.0" promptText="Xác nhận mật khẩu" styleClass="txtField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtEmail" layoutX="74.0" layoutY="4.0" prefHeight="50.0" prefWidth="254.0" promptText="Nhập email" styleClass="txtField" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                        <Label text="*" textFill="RED" />
+                        <Label text="*" textFill="RED" GridPane.rowIndex="1" />
+                        <Label text="*" textFill="RED" GridPane.rowIndex="2" />
+                            </children>
+                        </GridPane>
+               </left>
+               <center>
+                  <GridPane prefHeight="171.0" prefWidth="194.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="0.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="71.0" minWidth="6.0" prefWidth="34.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="119.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="37.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="23.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="174.0" minHeight="10.0" prefHeight="149.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="100.0" valignment="TOP" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="65.0" prefWidth="114.0" text="Choose Your Avatar" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <ImageView fx:id="imgAdd" fitHeight="137.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" styleClass="img" GridPane.columnIndex="2">
+                           <image>
+                              <Image url="@img/avatar/Avatars%20Set%20Flat%20Style-06.png" />
+                           </image>
+                           <effect>
+                              <DropShadow height="8.86" radius="5.4475" width="14.93" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fx:id="btnPrev" fitHeight="98.0" fitWidth="42.0" onMouseClicked="#prev" pickOnBounds="true" preserveRatio="true" styleClass="img" GridPane.columnIndex="1">
+                           <image>
+                              <Image url="@img/next.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="btnNext" fitHeight="98.0" fitWidth="42.0" layoutX="34.0" layoutY="64.0" onMouseClicked="#next" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;" styleClass="img" GridPane.columnIndex="3">
+                           <image>
+                              <Image url="@img/next.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </center>
+                </BorderPane>
+                <HBox prefHeight="42.0" prefWidth="442.0" styleClass="footer">
+                    <children>
+                        <HBox prefHeight="29.0" prefWidth="322.0" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="224.0">
+                            <children>
+                                <Label style="-fx-font-style: italic;" text="\@Copyright of HungNguyen81" textFill="WHITE" />
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="29.0" prefWidth="22.0" />
+                    </children>
+                </HBox>
+            </children>
+            <stylesheets>
+                <URL value="@ddd.css" />
+            </stylesheets>
+        </VBox>
+    </children>
+</Pane>

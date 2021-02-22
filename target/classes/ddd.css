@@ -1,0 +1,89 @@
+.title-bar {
+  -fx-padding: 10px;
+  -fx-background-color: #6db5ca;
+  -fx-background-radius: 30 30 0 0;
+ }
+
+.title-bar Label {
+  -fx-text-fill: white;
+}
+
+.title, .close-button {
+  -fx-font-family: Arial;
+  -fx-font-weight: 700;
+}
+
+.title {
+  -fx-font-size: 18px;
+}
+
+.close-button {
+  -fx-font-size: 20px;
+  -fx-padding: 1px;
+}
+
+.close-button:hover {
+  -fx-text-fill: red;
+}
+
+.my_pane{
+    -fx-background-radius: 30;
+}
+
+.tab{
+    -fx-background-color: #6db5ca;
+    -fx-background-radius: 5 5 0 0;
+    -fx-border-color: #6db5ca;
+    -fx-border-radius: 5 5 0 0;
+}
+.tab-label{
+    -fx-text-fill: white;
+}
+.tab:selected .tab-label{
+    -fx-text-fill: #6db5ca;
+}
+.tab:selected{
+    -fx-background-color: white;
+    -fx-border-color:white;
+    -fx-border-radius: 5 5 0 0;
+}
+.tab:hover{
+    -fx-background-color: #6db5ff;
+    -fx-border-color: #6db5ff;
+    -fx-border-radius: 5 5 0 0;
+}
+.tab:selected:hover{
+    -fx-background-color: white;
+    -fx-border-color:white;
+    -fx-border-radius: 5 5 0 0;
+}
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.tab-pane{
+    -fx-background-color: white;
+}
+.tab-header-background{
+    -fx-background-color: #6db5ca;
+}
+
+.footer{
+    -fx-background-radius: 0 0 30 30;
+    -fx-background-color: #6db5ca;
+}
+
+.lb_btn{
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+}
+
+.btn:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 50%;
+}
+
+

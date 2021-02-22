@@ -1,0 +1,11 @@
+.myavt{
+    -fx-background-color:  #b8d8e0;
+    -fx-background-radius: 50%;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 50%;
+}
+
+.myavt:hover{
+    -fx-border-color:  #ed9b2d;
+}

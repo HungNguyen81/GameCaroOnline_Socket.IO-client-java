@@ -1,0 +1,33 @@
+.btn{
+    -fx-background-color: #6db5ca;
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-background-radius: 100;
+}
+.btn:hover{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-background-color: #6db5ff;
+    -fx-border-color: transparent;
+}
+
+.txtField{
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 15;
+    -fx-font-size: 20;
+}
+
+.lbForgot{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-text-fill: blue;
+}
+.lbForgot:hover{
+    -fx-text-fill: #e9775f;
+}
+
+.img:hover{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}

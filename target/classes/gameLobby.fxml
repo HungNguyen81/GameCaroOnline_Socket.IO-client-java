@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane prefHeight="495.0" prefWidth="680.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameLobby">
+    <children>
+        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="680.0" style="-fx-border-color: #6db5ca; -fx-border-radius: 30;" styleClass="my_pane">
+            <children>
+                <HBox prefHeight="28.0" prefWidth="680.0" styleClass="title-bar">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="28.0">
+                            <padding>
+                                <Insets bottom="20.0" />
+                            </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="24.0">
+                            <padding>
+                                <Insets bottom="12.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </HBox>
+            <Pane prefHeight="471.0" prefWidth="678.0" style="-fx-background-color: #6db5ca;">
+               <children>
+                  <Button fx:id="btnCreate" layoutX="123.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#CreateRoom" text="Tạo phòng" />
+                  <Button fx:id="btnJoin" layoutX="123.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#JoinRoom" text="Vào phòng" />
+                  <TextField fx:id="txtRoomID" layoutX="123.0" layoutY="130.0" />
+                  <Label fx:id="lbRoomID" layoutX="227.0" layoutY="85.0" text="..." />
+                  <TextArea fx:id="txtChat" layoutX="314.0" layoutY="29.0" prefHeight="274.0" prefWidth="335.0" />
+                  <TextArea fx:id="txtMessageInput" layoutX="312.0" layoutY="326.0" prefHeight="72.0" prefWidth="257.0" />
+                  <Button fx:id="btnSend" layoutX="578.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#sendMsg" prefHeight="72.0" prefWidth="71.0" text="send" />
+               </children>
+            </Pane>
+                <HBox prefHeight="100.0" prefWidth="600.0" styleClass="footer">
+                    <children>
+                        <HBox prefHeight="29.0" prefWidth="322.0" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="224.0">
+                            <children>
+                                <Label style="-fx-font-style: italic;" text="\@Copyright of HungNguyen81" textFill="WHITE" />
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="29.0" prefWidth="22.0" />
+                    </children>
+                </HBox>
+            </children>
+            <stylesheets>
+                <URL value="@ddd.css" />
+            </stylesheets>
+        </VBox>
+    </children>
+</Pane>
