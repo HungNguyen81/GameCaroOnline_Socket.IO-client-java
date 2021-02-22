@@ -27,7 +27,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="435.0" styleClass="title" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="JavaFX application Test">
+                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="CaroH - Online Caro Game">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

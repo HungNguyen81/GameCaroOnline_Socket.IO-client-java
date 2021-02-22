@@ -13,7 +13,7 @@
     </properties>
     <root id="root">
       <element id="archive" name="testfx.jar">
-        <element id="module-output" name="testfx" />
+        <element id="module-output" name="CaroH - Online Game" />
       </element>
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/socket.io-client-2.0.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/engine.io-client-2.0.0.jar" path-in-jar="/" />
