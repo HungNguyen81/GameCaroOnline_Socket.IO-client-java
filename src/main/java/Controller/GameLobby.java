@@ -30,6 +30,7 @@ public class GameLobby {
     public void CreateRoom(){
         Random rand = new Random();
 
+        // create room id with 6 random number letters
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < 6; i++){
             sb.append(rand.nextInt(10));
@@ -92,21 +93,11 @@ public class GameLobby {
         chat += msg+"\n";
         txtChat.setText(chat);
         socket.emit("sendMsg", msg);
-        socket.on("replyMsg", args -> {
-
+        socket.on("newMsg", args -> {
         });
     }
 
     public void backToHomeStage() throws IOException {
         Main_login.gotoHomeStage();
-    }
-
-    public String makeMsgJson(String msg, String from, String to){
-        return "{"
-                + "\"id\":\"" + roomID + "\","
-                + "\"msg\":\"" + msg + "\","
-                + "\"from\":\"" + from + "\","
-                + "\"to\":\"" + to + "\""
-                + "}";
     }
 }
