@@ -22,7 +22,6 @@ public class GameLobby {
     Socket socket;
     String url;
     String chat;
-    private static boolean isJoined = false;
 
     public static String roomID;
     private static boolean isConnect = false;
@@ -55,6 +54,7 @@ public class GameLobby {
         socket.emit("createRoom", roomID, Main_login.user, Main_login.avt);
 
         btnSend.setVisible(true);
+        chat = "\n";
     }
 
     public void JoinRoom(){
@@ -68,15 +68,13 @@ public class GameLobby {
 
         socket.emit("joinRoom", roomID, Main_login.user, Main_login.avt);
         socket.on("confirmJoin", args -> {
-            Alert alert;
             String res = args[0].toString();
             if(res.equals("1")){
                 System.out.println("ok");
-                isJoined = true;
                 btnSend.setVisible(true);
-
+                chat = "\n";
             } else {
-                isJoined = false;
+                System.out.println("failed");
             }
         });
     }
@@ -87,11 +85,19 @@ public class GameLobby {
         socket.connect();
 
         String msg = txtMessageInput.getText();
-        chat += msg+"\n";
-        txtChat.setText(chat);
+        makeChatLine(chat, Main_login.user, msg);
+
         socket.emit("sendMsg", msg);
         socket.on("newMsg", args -> {
+            String username = args[0].toString();
+            String replymsg = args[1].toString();
+            System.out.println(username);
+            makeChatLine(chat, username, replymsg);
         });
+    }
+
+    private void makeChatLine(String chat, String username, String msg){
+        txtChat.setText(chat + username + ": - " + msg + "\n");
     }
 
     public void backToHomeStage() throws IOException {
