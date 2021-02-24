@@ -42,7 +42,7 @@
                         <Insets top="20.0" />
                      </padding></TextArea>
                   <TextArea fx:id="txtMessageInput" layoutX="312.0" layoutY="326.0" prefHeight="72.0" prefWidth="257.0" />
-                  <Button fx:id="btnSend" layoutX="578.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#sendMsg" prefHeight="72.0" prefWidth="71.0" text="send" />
+                  <Button fx:id="btnSend" layoutX="578.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#sendMsg" prefHeight="72.0" prefWidth="71.0" text="send" visible="false" />
                   <Label layoutX="323.0" layoutY="34.0" text="--- Chat ----" />
                </children>
             </Pane>
