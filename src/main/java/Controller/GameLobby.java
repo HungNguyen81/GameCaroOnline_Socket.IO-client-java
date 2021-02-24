@@ -81,10 +81,6 @@ public class GameLobby {
     }
 
     public void sendMsg(){
-        IO.Options options = IO.Options.builder().build();
-        socket = IO.socket(URI.create(Main_login.hostUrl), options);
-        socket.connect();
-
         String msg = txtMessageInput.getText();
         makeChatLine(chat, Main_login.user, msg);
 
