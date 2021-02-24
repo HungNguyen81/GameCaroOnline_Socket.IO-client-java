@@ -2,15 +2,14 @@ package Controller;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URI;
-import java.util.Arrays;
 import java.util.Random;
 
 public class GameLobby {
@@ -21,13 +20,15 @@ public class GameLobby {
     @FXML Button btnSend;
     @FXML TextArea txtMessageInput;
     @FXML TextArea txtChat;
+    @FXML Label lblBack;
 
     Socket socket;
     String url;
     String doiThu;
-    String chat = "--- CHAT ---\n";
+    String chat = "\n\n";
 
     public static String roomID;
+    private static boolean isConnect = false;
 
     public void CreateRoom(){
         Random rand = new Random();
@@ -42,14 +43,19 @@ public class GameLobby {
         System.out.println(roomID);
 
         IO.Options options = IO.Options.builder().build();
+        if(isConnect) {
+            socket.disconnect();
+            isConnect = false;
+        }
         socket = IO.socket(URI.create(Main_login.hostUrl), options);
-        socket.connect();
+        if(!isConnect) {
+            socket.connect();
+            isConnect = true;
+        }
         txtChat.setText(chat);
         System.out.println("create room " + roomID);
 
-        socket.emit("createRoom", roomID, Main_login.user);
-
-
+        socket.emit("createRoom", roomID, Main_login.user, Main_login.avt);
     }
 
     public void JoinRoom(){
@@ -62,11 +68,8 @@ public class GameLobby {
         txtChat.setText(chat);
 
         socket.emit("join", roomID);
-        socket.on("join-reply", new Emitter.Listener() {
-            @Override
-            public void call(Object... args){
-                doiThu = args[0].toString();
-            }
+        socket.on("join-reply", args -> {
+            doiThu = args[0].toString();
         });
     }
 
@@ -83,7 +86,12 @@ public class GameLobby {
 
         });
     }
-    public String makeMsgJson(String id, String msg, String from, String to){
+
+    public void backToHomeStage() throws IOException {
+        Main_login.gotoHomeStage();
+    }
+
+    public String makeMsgJson(String msg, String from, String to){
         return "{"
                 + "\"id\":\"" + roomID + "\","
                 + "\"msg\":\"" + msg + "\","

@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,6 +16,7 @@ public class Main_login extends Application {
     public static double xOffset = 0;
     public static double yOffset = 0;
     public static String user;
+    public static int avt;
     public static String email;
     public static String dir = System.getProperty("user.dir");
     public static String hostUrl = "http://localhost:3000/";
@@ -27,21 +30,31 @@ public class Main_login extends Application {
 
         Scene scene = new Scene(root);
         stage.initStyle(StageStyle.TRANSPARENT);
-
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("CaroH Login");
 
-        String data = LocalCookieControll.getCookie();
+        String data = LocalCookieController.getCookie();
+
+        // if have cookie
         if(data != null) {
             String[] cookie = data.split(",");
-            System.out.println(cookie[0] + "," + cookie[1]);
-            String res = new ConnectServer().createConnect(hostUrl + "login", cookie[0], cookie[1]);
+            // Log
+            System.out.println(cookie[LocalCookieController.COOKIE_USER_NAME] + ","
+                             + cookie[LocalCookieController.COOKIE_PASSWORD]);
+
+            // Connect server to login
+            String res = new ConnectServer()
+                    .createConnect(hostUrl + "login",
+                            cookie[LocalCookieController.COOKIE_USER_NAME],
+                            cookie[LocalCookieController.COOKIE_PASSWORD]);
+
             if (res.contains("Login OK")) {
-                user = cookie[0];
+                user = cookie[LocalCookieController.COOKIE_USER_NAME];
+                avt = Integer.parseInt(cookie[LocalCookieController.COOKIE_AVATAR]);
                 gotoHomeStage();
                 return;
             } else {
-                LocalCookieControll.setCookie(); // Wipe cookie
+                LocalCookieController.setCookie(); // Wipe cookie
             }
         }
         stage.setScene(scene);
@@ -63,14 +76,12 @@ public class Main_login extends Application {
         });
 
         Scene scene = new Scene(root);
-
         HomeStage cc = loader.getController();
         cc.initComponent();
         scene.setFill(Color.TRANSPARENT);
 
         stage.setScene(scene);
-        stage.setTitle("CaroH Home");
-
+        stage.setTitle("CaroH - Home");
         stage.show();
     }
 
@@ -85,7 +96,7 @@ public class Main_login extends Application {
         scene.setFill(Color.TRANSPARENT);
 
         stage.setScene(scene);
-        stage.setTitle("CaroH Signup");
+        stage.setTitle("CaroH - Signup");
     }
     public static void gotoLoginStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(Main_login.class.getResource("/loginStage.fxml"));
@@ -95,18 +106,24 @@ public class Main_login extends Application {
         scene.setFill(Color.TRANSPARENT);
 
         stage.setScene(scene);
-        stage.setTitle("CaroH Login");
+        stage.setTitle("CaroH - Login");
     }
 
     public static void gotoGameLobby() throws IOException {
         FXMLLoader loader = new FXMLLoader(Main_login.class.getResource("/gameLobby.fxml"));
-        Parent root = loader.load();
+        try{
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
 
-        Scene scene = new Scene(root);
-        scene.setFill(Color.TRANSPARENT);
-
-        stage.setScene(scene);
-        stage.setTitle("CaroH Lobby");
+            stage.setScene(scene);
+            stage.setTitle("CaroH - Game Lobby");
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Something went wrong!",
+                    ButtonType.OK);
+            alert.showAndWait();
+        }
     }
     public static void main(String[] args) {
         launch(args);

@@ -13,47 +13,32 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class ConnectServer {
-    public String createConnect(String _url, String username, String password) throws IOException {
-        URL url = new URL(_url);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    private URL url;
+    private HttpURLConnection con;
+
+    // connect for login action
+    public String createConnect(String _url,
+                                String username,
+                                String password) throws IOException {
+        url = new URL(_url);
+        con = (HttpURLConnection) url.openConnection();
 
         con.setDoOutput(true);
 
         Map<String,String> arguments = new HashMap<>();
         arguments.put("username", username);
         arguments.put("password", password);
-        StringJoiner sj = new StringJoiner("&");
-        for(Map.Entry<String,String> entry : arguments.entrySet())
-            sj.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "="
-                    + URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
-        byte[] out = sj.toString().getBytes(StandardCharsets.UTF_8);
-        int length = out.length;
-        con.setFixedLengthStreamingMode(length);
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Accept", "application/json");
-        con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        con.connect();
-        try(OutputStream os = con.getOutputStream()) {
-            os.write(out);
-        }
-//        OutputStream os = con.getOutputStream();
-//        os.write(jsonInputString.getBytes(StandardCharsets.UTF_8));
-
-        //wait for response
-        try(BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))){
-            StringBuilder response = new StringBuilder();
-            String responseLine;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
-            }
-            System.out.println(response.toString());
-            return response.toString();
-        }
+        return conn(arguments, con);
     }
-    public String createConnect(String _url, String username, String password, String email, int avtNum) throws IOException {
-        URL url = new URL(_url);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+    // connect for sign in action
+    public String createConnect(String _url,
+                                String username,
+                                String password,
+                                String email,
+                                int avtNum) throws IOException {
+        url = new URL(_url);
+        con = (HttpURLConnection) url.openConnection();
 
         con.setDoOutput(true);
 
@@ -61,7 +46,11 @@ public class ConnectServer {
         arguments.put("username", username);
         arguments.put("password", password);
         arguments.put("email", email);
-        arguments.put("avt", avtNum+"");
+        arguments.put("avt", avtNum + "");
+        return conn(arguments, con);
+    }
+
+    public String conn(Map<String, String> arguments, HttpURLConnection con) throws IOException {
         StringJoiner sj = new StringJoiner("&");
         for(Map.Entry<String,String> entry : arguments.entrySet())
             sj.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "="
@@ -76,16 +65,21 @@ public class ConnectServer {
         try(OutputStream os = con.getOutputStream()) {
             os.write(out);
         }
+
         //wait for response
-        try(BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))){
-            StringBuilder response = new StringBuilder();
+        StringBuilder response = new StringBuilder();
+        try{
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
+
             String responseLine;
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
             System.out.println(response.toString());
-            return response.toString();
+        } catch (Exception e){
+            System.out.println("login/signin error");
         }
+        return response.toString();
     }
 }

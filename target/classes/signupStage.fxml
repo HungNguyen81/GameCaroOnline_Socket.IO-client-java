@@ -29,7 +29,7 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="45.0" prefWidth="387.0" styleClass="title" HBox.hgrow="ALWAYS">
                             <children>
-                                <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="JavaFX application Test">
+                                <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="CaroH - Online Caro Game">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
@@ -100,9 +100,9 @@
                <left>
                         <GridPane prefHeight="249.0" prefWidth="355.0" BorderPane.alignment="CENTER">
                             <columnConstraints>
-                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="41.0" />
-                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="14.0" />
-                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="341.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="38.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="330.0" minWidth="0.0" prefWidth="8.0" />
+                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="311.0" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="94.0" vgrow="SOMETIMES" />
@@ -111,27 +111,27 @@
                         <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <PasswordField fx:id="txtPassword" prefHeight="50.0" prefWidth="254.0" promptText="Nhập mật khẩu" styleClass="txtField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                <TextField fx:id="txtUsername" prefHeight="50.0" prefWidth="254.0" promptText="Nhập username" styleClass="txtField" GridPane.columnIndex="2">
+                        <Label text="*" textFill="RED" />
+                        <Label text="*" textFill="RED" GridPane.rowIndex="1" />
+                        <Label text="*" textFill="RED" GridPane.rowIndex="2" />
+                                <TextField fx:id="txtUsername" prefHeight="56.0" prefWidth="300.0" promptText="Nhập username" styleClass="txtField" GridPane.columnIndex="2">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                            <GridPane.margin>
                               <Insets bottom="10.0" />
                            </GridPane.margin></TextField>
+                                <PasswordField fx:id="txtPassword" prefHeight="50.0" prefWidth="254.0" promptText="Nhập mật khẩu" styleClass="txtField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <PasswordField fx:id="txtPasswordConfirm" layoutX="151.0" layoutY="70.0" prefHeight="50.0" prefWidth="254.0" promptText="Xác nhận mật khẩu" styleClass="txtField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <TextField fx:id="txtEmail" layoutX="74.0" layoutY="4.0" prefHeight="50.0" prefWidth="254.0" promptText="Nhập email" styleClass="txtField" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                         </TextField>
-                        <Label text="*" textFill="RED" />
-                        <Label text="*" textFill="RED" GridPane.rowIndex="1" />
-                        <Label text="*" textFill="RED" GridPane.rowIndex="2" />
                             </children>
                         </GridPane>
                </left>
-               <center>
+               <right>
                   <GridPane prefHeight="171.0" prefWidth="194.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="0.0" prefWidth="20.0" />
@@ -166,7 +166,7 @@
                         </ImageView>
                      </children>
                   </GridPane>
-               </center>
+               </right>
                 </BorderPane>
                 <HBox prefHeight="42.0" prefWidth="442.0" styleClass="footer">
                     <children>

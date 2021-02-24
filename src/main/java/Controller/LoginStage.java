@@ -12,6 +12,7 @@ public class LoginStage {
     @FXML PasswordField txtPassword;
     @FXML Button btnLogin;
     @FXML Label lbForgotPwd;
+    @FXML CheckBox cbRememberLogin;
 
     public void Login() throws IOException {
         String username = txtUsername.getText();
@@ -23,8 +24,9 @@ public class LoginStage {
             try {
                 String[] str = res.split(",");
                 Main_login.user = username;
-                Main_login.email = str[2];
-                LocalCookieControll.setCookie(username, password, str[1]);
+                Main_login.email = (str.length < 3)? "no-email":str[2];
+                if(cbRememberLogin.isSelected())
+                    LocalCookieController.setCookie(username, password, str[1]);
             } catch (Exception ex){
                 ex.printStackTrace();
             }
@@ -40,6 +42,12 @@ public class LoginStage {
     }
 
     public void signup() {
+        if(!txtUsername.getText().equals("") || !txtPassword.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn muốn đăng ký tài khoản mới?",
+                    ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
+            if(alert.getResult() != ButtonType.YES) return;
+        }
         try {
             Main_login.gotoSignupStage();
         } catch (IOException ioException) {

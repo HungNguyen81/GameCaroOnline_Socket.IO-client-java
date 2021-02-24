@@ -1,7 +1,9 @@
 package Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,7 +29,7 @@ public class HomeStage {
         String avtDir = "img/avt.png";
         try {
             avtDir = "img/avatar/Avatars Set Flat Style-"
-                    + LocalCookieControll.getAvt() + ".png";
+                    + LocalCookieController.getAvt() + ".png";
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +64,6 @@ public class HomeStage {
 
     private void initProfile(Image img){
         imgAvt.setImage(img);
-
         lbUser.setText(Main_login.user);
         lbEmail.setText(Main_login.email);
     }
@@ -83,18 +84,25 @@ public class HomeStage {
                 e.printStackTrace();
             }
         });
-        btn_logout.setOnAction(actionEvent -> {
-            try {
+        btn_logout.setOnAction(actionEvent -> logout());
+    }
+
+    public void logout(){
+        try {
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Bạn muốn đăng xuất?",
+                    ButtonType.YES, ButtonType.NO);
+            confirm.showAndWait();
+            if(confirm.getResult() == ButtonType.YES){
                 FileWriter fw =
                         new FileWriter(Main_login.dir
                                 + "/Model/myLocalCookie.csv");
                 fw.write("");
                 fw.close();
                 Main_login.gotoLoginStage();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void close() {

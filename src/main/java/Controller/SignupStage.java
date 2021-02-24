@@ -52,7 +52,7 @@ public class SignupStage {
         String res = new ConnectServer().createConnect(url, username, password, email, num);
         if(res.equals("Signup OK")){
             try {
-                LocalCookieControll.setCookie(username, password, num+"");
+                LocalCookieController.setCookie(username, password, num+"");
             } catch (IOException err){
                 err.printStackTrace();
             }

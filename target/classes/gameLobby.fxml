@@ -20,6 +20,9 @@
                             <padding>
                                 <Insets bottom="20.0" />
                             </padding>
+                     <children>
+                        <Label fx:id="lblBack" onMouseClicked="#backToHomeStage" text="&lt;-" />
+                     </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="45.0" prefWidth="24.0">
                             <padding>
@@ -30,13 +33,17 @@
                 </HBox>
             <Pane prefHeight="471.0" prefWidth="678.0" style="-fx-background-color: #6db5ca;">
                <children>
-                  <Button fx:id="btnCreate" layoutX="123.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#CreateRoom" text="Tạo phòng" />
+                  <Button fx:id="btnCreate" layoutX="82.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#CreateRoom" text="Tạo phòng" />
                   <Button fx:id="btnJoin" layoutX="123.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#JoinRoom" text="Vào phòng" />
-                  <TextField fx:id="txtRoomID" layoutX="123.0" layoutY="130.0" />
+                  <TextField fx:id="txtRoomID" layoutX="81.0" layoutY="130.0" />
                   <Label fx:id="lbRoomID" layoutX="227.0" layoutY="85.0" text="..." />
-                  <TextArea fx:id="txtChat" layoutX="314.0" layoutY="29.0" prefHeight="274.0" prefWidth="335.0" />
+                  <TextArea fx:id="txtChat" layoutX="314.0" layoutY="29.0" prefHeight="274.0" prefWidth="335.0" promptText="...">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding></TextArea>
                   <TextArea fx:id="txtMessageInput" layoutX="312.0" layoutY="326.0" prefHeight="72.0" prefWidth="257.0" />
                   <Button fx:id="btnSend" layoutX="578.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#sendMsg" prefHeight="72.0" prefWidth="71.0" text="send" />
+                  <Label layoutX="323.0" layoutY="34.0" text="--- Chat ----" />
                </children>
             </Pane>
                 <HBox prefHeight="100.0" prefWidth="600.0" styleClass="footer">
