@@ -51,8 +51,9 @@ public class GameLobby {
         }
         txtChat.setText(chat);
         System.out.println("create room " + roomID);
-
         socket.emit("createRoom", roomID, Main_login.user, Main_login.avt);
+
+        btnSend.setVisible(true);
     }
 
     public void JoinRoom(){
@@ -60,25 +61,21 @@ public class GameLobby {
 
         System.out.println("join room " + roomID);
         IO.Options options = IO.Options.builder().build();
-        socket = IO.socket(URI.create(url), options);
+        socket = IO.socket(URI.create(Main_login.hostUrl), options);
         socket.connect();
         txtChat.setText(chat);
 
         socket.emit("joinRoom", roomID, Main_login.user, Main_login.avt);
         socket.on("confirmJoin", args -> {
             Alert alert;
-            if(args[0].equals("1")){
-                alert = new Alert(Alert.AlertType.INFORMATION,
-                        "Join successfully to room " + roomID);
-                alert.showAndWait();
-
+            String res = args[0].toString();
+            if(res.equals("1")){
+                System.out.println("ok");
                 isJoined = true;
                 btnSend.setVisible(true);
 
             } else {
-                alert = new Alert(Alert.AlertType.INFORMATION,
-                        "Failed to join room " + roomID);
-                alert.showAndWait();
+                isJoined = false;
             }
         });
     }
