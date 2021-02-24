@@ -54,6 +54,7 @@ public class GameLobby {
         socket.emit("createRoom", roomID, Main_login.user, Main_login.avt);
 
         btnSend.setVisible(true);
+        setMessageListenner(socket);
     }
 
     public void JoinRoom(){
@@ -76,12 +77,7 @@ public class GameLobby {
                 System.out.println("failed");
             }
         });
-        socket.on("newMsg", args -> {
-            String username = args[0].toString();
-            String replymsg = args[1].toString();
-            System.out.println(username);
-            makeChatLine(chat, username, replymsg);
-        });
+        setMessageListenner(socket);
     }
 
     public void sendMsg(){
@@ -93,16 +89,21 @@ public class GameLobby {
         makeChatLine(chat, Main_login.user, msg);
 
         socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
+        setMessageListenner(socket);
+    }
+
+    private void makeChatLine(String chat, String username, String msg){
+        chat = chat + username + ": - " + msg + "\n";
+        txtChat.setText(chat);
+    }
+
+    private void setMessageListenner(Socket socket){
         socket.on("newMsg", args -> {
             String username = args[0].toString();
             String replymsg = args[1].toString();
             System.out.println(username);
             makeChatLine(chat, username, replymsg);
         });
-    }
-
-    private void makeChatLine(String chat, String username, String msg){
-        txtChat.setText(chat + username + ": - " + msg + "\n");
     }
 
     public void backToHomeStage() throws IOException {
