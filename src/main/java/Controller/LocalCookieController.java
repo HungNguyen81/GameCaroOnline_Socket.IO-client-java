@@ -9,6 +9,7 @@ public class LocalCookieController {
 
     private static String cookie = "";
     private static final String filename = "/Model/myLocalCookie.csv";
+
     public static void setCookie(String _user, String _pass, String _avt) throws IOException {
         FileWriter fw = new FileWriter(Main_login.dir + filename);
         cookie = _user + "," + _pass + "," + _avt;

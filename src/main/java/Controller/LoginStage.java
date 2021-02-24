@@ -23,8 +23,11 @@ public class LoginStage {
         if(res.contains("Login OK")){
             try {
                 String[] str = res.split(",");
+                String avt_id = str[1];
+                String email = (str.length < 3)? "no-email":str[2];
                 Main_login.user = username;
-                Main_login.email = (str.length < 3)? "no-email":str[2];
+                Main_login.avt = Integer.parseInt(avt_id);
+                Main_login.email = email;
                 if(cbRememberLogin.isSelected())
                     LocalCookieController.setCookie(username, password, str[1]);
             } catch (Exception ex){

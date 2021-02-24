@@ -26,13 +26,8 @@ public class HomeStage {
 
     public void initComponent(){
         lb_username.setText(Main_login.user);
-        String avtDir = "img/avt.png";
-        try {
-            avtDir = "img/avatar/Avatars Set Flat Style-"
-                    + LocalCookieController.getAvt() + ".png";
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String avtDir = getAvatarDir(Main_login.avt);
+        System.out.println(avtDir);
 
         Image img = new Image("img/game.png");
         ImageView newGameView = new ImageView(img);
@@ -62,6 +57,11 @@ public class HomeStage {
         setListener();
     }
 
+    private String getAvatarDir(int avt_id){
+        return "img/avatar/Avatars Set Flat Style-"
+                + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png";
+    }
+
     private void initProfile(Image img){
         imgAvt.setImage(img);
         lbUser.setText(Main_login.user);
@@ -70,14 +70,6 @@ public class HomeStage {
 
     public void setListener(){
         btn_newGame.setOnAction(actionEvent -> {
-//            String url = "http://0974b25300c9.ngrok.io";
-//            url = Main_login.hostUrl;
-//            System.out.println("#" + num + ". send data");
-//            IO.Options options = IO.Options.builder().build();
-//            Socket socket = IO.socket(URI.create(url), options);
-//            socket.connect();
-//            num++;
-//            socket.emit("testEmit", "Hellooooo num#" + num);
             try {
                 Main_login.gotoGameLobby();
             } catch (IOException e) {
@@ -89,12 +81,14 @@ public class HomeStage {
 
     public void logout(){
         try {
-            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Bạn muốn đăng xuất?",
-                    ButtonType.YES, ButtonType.NO);
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Bạn muốn đăng xuất?",
+                    ButtonType.YES,
+                    ButtonType.NO);
             confirm.showAndWait();
+
             if(confirm.getResult() == ButtonType.YES){
-                FileWriter fw =
-                        new FileWriter(Main_login.dir
+                FileWriter fw = new FileWriter(Main_login.dir
                                 + "/Model/myLocalCookie.csv");
                 fw.write("");
                 fw.close();
