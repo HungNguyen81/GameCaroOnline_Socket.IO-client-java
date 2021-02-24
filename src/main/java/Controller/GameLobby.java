@@ -92,8 +92,8 @@ public class GameLobby {
         setMessageListenner(socket);
     }
 
-    private void makeChatLine(String chat, String username, String msg){
-        chat = chat + username + ": - " + msg + "\n";
+    private void makeChatLine(String chatContent, String username, String msg){
+        chat = chatContent + username + ": - " + msg + "\n";
         txtChat.setText(chat);
     }
 
