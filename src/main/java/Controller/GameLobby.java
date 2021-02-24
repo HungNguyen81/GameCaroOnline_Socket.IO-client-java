@@ -27,6 +27,7 @@ public class GameLobby {
     private static boolean isConnect = false;
 
     public void CreateRoom(){
+        Main_login.userNumber = 1;
         Random rand = new Random();
 
         // create room id with 6 random number letters
@@ -58,6 +59,7 @@ public class GameLobby {
     }
 
     public void JoinRoom(){
+        Main_login.userNumber = 2;
         roomID = txtRoomID.getText();
 
         System.out.println("join room " + roomID);
@@ -87,7 +89,7 @@ public class GameLobby {
         String msg = txtMessageInput.getText();
         makeChatLine(chat, Main_login.user, msg);
 
-        socket.emit("sendMsg", msg);
+        socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
         socket.on("newMsg", args -> {
             String username = args[0].toString();
             String replymsg = args[1].toString();
