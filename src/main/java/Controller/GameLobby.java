@@ -3,10 +3,7 @@ package Controller;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -24,8 +21,8 @@ public class GameLobby {
 
     Socket socket;
     String url;
-    String doiThu;
-    String chat = "\n\n";
+    String chat;
+    private static boolean isJoined = false;
 
     public static String roomID;
     private static boolean isConnect = false;
@@ -67,9 +64,22 @@ public class GameLobby {
         socket.connect();
         txtChat.setText(chat);
 
-        socket.emit("join", roomID);
-        socket.on("join-reply", args -> {
-            doiThu = args[0].toString();
+        socket.emit("joinRoom", roomID, Main_login.user, Main_login.avt);
+        socket.on("confirmJoin", args -> {
+            Alert alert;
+            if(args[0].equals("1")){
+                alert = new Alert(Alert.AlertType.INFORMATION,
+                        "Join successfully to room " + roomID);
+                alert.showAndWait();
+
+                isJoined = true;
+                btnSend.setVisible(true);
+
+            } else {
+                alert = new Alert(Alert.AlertType.INFORMATION,
+                        "Failed to join room " + roomID);
+                alert.showAndWait();
+            }
         });
     }
 
