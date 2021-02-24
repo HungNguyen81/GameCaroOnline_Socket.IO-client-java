@@ -20,8 +20,7 @@ public class GameLobby {
     @FXML Label lblBack;
 
     Socket socket;
-    String url;
-    String chat;
+    String chat = "\n";
 
     public static String roomID;
     private static boolean isConnect = false;
@@ -55,7 +54,6 @@ public class GameLobby {
         socket.emit("createRoom", roomID, Main_login.user, Main_login.avt);
 
         btnSend.setVisible(true);
-        chat = "\n";
     }
 
     public void JoinRoom(){
@@ -74,10 +72,15 @@ public class GameLobby {
             if(res.equals("1")){
                 System.out.println("ok");
                 btnSend.setVisible(true);
-                chat = "\n";
             } else {
                 System.out.println("failed");
             }
+        });
+        socket.on("newMsg", args -> {
+            String username = args[0].toString();
+            String replymsg = args[1].toString();
+            System.out.println(username);
+            makeChatLine(chat, username, replymsg);
         });
     }
 
