@@ -26,7 +26,8 @@ public class Main_login extends Application {
     public void start(Stage primaryStage) throws Exception{
         dir = dir + "/src/main/java";
         stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/loginStage.fxml"));
+        FXMLLoader loader =
+                new FXMLLoader(getClass().getResource("/loginStage.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
@@ -63,7 +64,9 @@ public class Main_login extends Application {
     }
 
     public static void gotoHomeStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main_login.class.getResource("/homeState.fxml"));
+        FXMLLoader loader =
+                new FXMLLoader(Main_login.class.
+                        getResource("/homeState.fxml"));
         Parent root = loader.load();
 
         //Make stage draggable
@@ -79,7 +82,9 @@ public class Main_login extends Application {
     }
 
     public static void gotoSignupStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main_login.class.getResource("/signupStage.fxml"));
+        FXMLLoader loader =
+                new FXMLLoader(Main_login.class.
+                        getResource("/signupStage.fxml"));
         Parent root = loader.load();
 
         SignupStage ss = loader.getController();
@@ -92,7 +97,9 @@ public class Main_login extends Application {
         stage.setTitle("CaroH - Signup");
     }
     public static void gotoLoginStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main_login.class.getResource("/loginStage.fxml"));
+        FXMLLoader loader =
+                new FXMLLoader(Main_login.class.
+                        getResource("/loginStage.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
@@ -103,7 +110,9 @@ public class Main_login extends Application {
     }
 
     public static void gotoGameLobby() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main_login.class.getResource("/gameLobby.fxml"));
+        FXMLLoader loader =
+                new FXMLLoader(Main_login.class.
+                        getResource("/gameLobby.fxml"));
         try{
             Parent root = loader.load();
             makeDraggable(root);
@@ -113,6 +122,7 @@ public class Main_login extends Application {
             stage.setScene(scene);
             stage.setTitle("CaroH - Game Lobby");
         } catch (Exception e){
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR,
                     "Something went wrong!",
                     ButtonType.OK);

@@ -4,49 +4,143 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
 <Pane prefHeight="495.0" prefWidth="680.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameLobby">
+    <stylesheets>
+        <URL value="@lobbyStyle.css" />
+    </stylesheets>
     <children>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="680.0" style="-fx-border-color: #6db5ca; -fx-border-radius: 30;" styleClass="my_pane">
             <children>
-                <HBox prefHeight="28.0" prefWidth="680.0" styleClass="title-bar">
+                <HBox prefHeight="30.0" prefWidth="678.0" style="-fx-max-height: 30;" styleClass="title-bar">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="28.0">
+                        <HBox alignment="CENTER" prefHeight="44.0" prefWidth="57.0">
                             <padding>
                                 <Insets bottom="20.0" />
-                            </padding>
-                     <children>
-                        <Label fx:id="lblBack" onMouseClicked="#backToHomeStage" text="&lt;-" />
-                     </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="24.0">
-                            <padding>
-                                <Insets bottom="12.0" />
                             </padding>
                         </HBox>
                     </children>
                 </HBox>
-            <Pane prefHeight="471.0" prefWidth="678.0" style="-fx-background-color: #6db5ca;">
+            <Pane prefHeight="417.0" prefWidth="678.0" style="-fx-background-color: #6db5ca;">
                <children>
-                  <Button fx:id="btnCreate" layoutX="82.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#CreateRoom" text="Tạo phòng" />
-                  <Button fx:id="btnJoin" layoutX="123.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#JoinRoom" text="Vào phòng" />
-                  <TextField fx:id="txtRoomID" layoutX="81.0" layoutY="130.0" />
-                  <Label fx:id="lbRoomID" layoutX="227.0" layoutY="85.0" text="..." />
-                  <TextArea fx:id="txtChat" layoutX="314.0" layoutY="29.0" prefHeight="274.0" prefWidth="335.0" promptText="...">
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding></TextArea>
-                  <TextArea fx:id="txtMessageInput" layoutX="312.0" layoutY="326.0" prefHeight="72.0" prefWidth="257.0" />
-                  <Button fx:id="btnSend" layoutX="578.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#sendMsg" prefHeight="72.0" prefWidth="71.0" text="send" visible="false" />
-                  <Label layoutX="323.0" layoutY="34.0" text="--- Chat ----" />
+                  <Button fx:id="btnCreate" layoutX="40.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#CreateRoom" prefHeight="56.0" prefWidth="99.0" text="Tạo phòng" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                  <Button fx:id="btnJoin" layoutX="164.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#JoinRoom" prefHeight="56.0" prefWidth="99.0" text="Vào phòng" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                  <TextField fx:id="txtRoomID" alignment="CENTER" layoutX="37.0" layoutY="255.0" prefHeight="46.0" prefWidth="224.0" promptText="Room ID" style="-fx-border-radius: 20; -fx-background-radius: 20;">
+                     <font>
+                        <Font size="17.0" />
+                     </font></TextField>
+                  <GridPane layoutX="85.0" layoutY="-42.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="lbRoomID1" prefHeight="56.0" prefWidth="93.0" text="ROOM ID:" textFill="#2409b9">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbRoomID" contentDisplay="CENTER" prefHeight="66.0" prefWidth="82.0" text="888888" textFill="#2409b9" wrapText="true" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Button fx:id="btnSend" layoutX="578.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#sendMsg" prefHeight="56.0" prefWidth="82.0" text="SEND" wrapText="true">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
+                  <Label layoutX="314.0" layoutY="9.0" text="--- Chat ----" />
+                  <Button fx:id="btnBack" alignment="CENTER" layoutX="26.0" layoutY="-14.0" mnemonicParsing="false" onMouseClicked="#backToHomeStage" prefHeight="40.0" prefWidth="42.0" styleClass="btnBack" stylesheets="@lobbyStyle.css" text="&lt;" textAlignment="CENTER" wrapText="true">
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                  <TextField fx:id="txtMessageInput" layoutX="314.0" layoutY="326.0" prefHeight="56.0" prefWidth="246.0" promptText="Type here to chat" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+                     <font>
+                        <Font size="22.0" />
+                     </font></TextField>
+                  <GridPane layoutX="20.0" layoutY="79.0" prefHeight="170.0" prefWidth="264.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="110.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="51.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="102.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="111.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fx:id="imgPlayerOne" fitHeight="93.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/avatar/Avatars%20Set%20Flat%20Style-05.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <Label text="VS" textFill="#bc4d4d" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Label>
+                        <ImageView fx:id="imgPlayerTwo" fitHeight="98.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                           <image>
+                              <Image url="@img/avatar/Avatars%20Set%20Flat%20Style-05.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <Label fx:id="lblPlayerOneName" text="YOU" GridPane.rowIndex="1" />
+                        <Label fx:id="lblPlayerTwoName" text="Player 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="lblUsername" layoutX="86.0" layoutY="7.0" text="username" textFill="#fc3e3e">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextFlow fx:id="txtChat" layoutX="314.0" layoutY="33.0" prefHeight="284.0" prefWidth="337.0" style="-fx-background-color: white;" />
                </children>
             </Pane>
-                <HBox prefHeight="100.0" prefWidth="600.0" styleClass="footer">
+                <HBox prefHeight="53.0" prefWidth="678.0" styleClass="footer">
                     <children>
                         <HBox prefHeight="29.0" prefWidth="322.0" HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="48.0" prefWidth="224.0">
