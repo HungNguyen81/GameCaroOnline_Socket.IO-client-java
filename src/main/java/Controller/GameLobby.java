@@ -42,19 +42,6 @@ public class GameLobby {
         imgPlayerOne.setImage(
                 new Image("img/avatar/"
                         + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png"));
-        if(!isConnect){
-            // wait for other player join
-            initSocket();
-            socket.on("roomFull", args -> {
-                String username = args[0].toString();
-                int avt = Integer.parseInt(args[1].toString());
-
-                imgPlayerTwo.setImage(
-                        new Image("img/avatar/"
-                                + ((avt < 10)? "0" + avt : "" + avt) + ".png"));
-                lblPlayerTwoName.setText(username);
-            });
-        }
     }
 
     public void CreateRoom(){
@@ -74,7 +61,7 @@ public class GameLobby {
         if(isConnect){
             socket.disconnect();
         }
-//        initSocket();
+        initSocket();
         socket.connect();
         pressEnterToSendMsg();
         isConnect = true;
@@ -85,6 +72,15 @@ public class GameLobby {
 
         btnSend.setDisable(false);
         setMessageListener(socket);
+        socket.on("roomFull", args -> {
+            String username = args[0].toString();
+            int avt = Integer.parseInt(args[1].toString());
+
+            imgPlayerTwo.setImage(
+                    new Image("img/avatar/"
+                            + ((avt < 10)? "0" + avt : "" + avt) + ".png"));
+            lblPlayerTwoName.setText(username);
+        });
     }
 
     public void JoinRoom(){
@@ -96,7 +92,7 @@ public class GameLobby {
         if(isConnect){
             socket.disconnect();
         }
-//        initSocket();
+        initSocket();
         socket.connect();
         pressEnterToSendMsg();
         isConnect = true;
@@ -106,6 +102,11 @@ public class GameLobby {
                 roomID, Main_login.user, Main_login.avt);
         socket.on("confirmJoin", args -> {
             String res = args[0].toString();
+            int avt_id = Integer.parseInt(args[1].toString());
+
+            imgPlayerTwo.setImage(
+                    new Image("img/avatar/"
+                            + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png"));
             if(res.equals("1")){
                 System.out.println("ok");
                 btnSend.setDisable(false);
