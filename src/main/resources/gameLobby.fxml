@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.web.WebView?>
 
 <Pane prefHeight="495.0" prefWidth="680.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameLobby">
     <stylesheets>
@@ -67,7 +67,7 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbRoomID" contentDisplay="CENTER" prefHeight="66.0" prefWidth="82.0" text="888888" textFill="#2409b9" wrapText="true" GridPane.columnIndex="1">
+                        <Label fx:id="lbRoomID" contentDisplay="CENTER" prefHeight="66.0" prefWidth="82.0" textFill="#2409b9" wrapText="true" GridPane.columnIndex="1">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -137,7 +137,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextFlow fx:id="txtChat" layoutX="314.0" layoutY="33.0" prefHeight="284.0" prefWidth="337.0" style="-fx-background-color: white;" />
+                  <WebView fx:id="txtChat" layoutX="314.0" layoutY="39.0" prefHeight="274.0" prefWidth="339.0" />
                </children>
             </Pane>
                 <HBox prefHeight="53.0" prefWidth="678.0" styleClass="footer">

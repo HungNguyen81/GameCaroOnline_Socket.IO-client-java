@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.scene.web.WebView;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class GameLobby {
     @FXML Label lbRoomID;
     @FXML Button btnSend;
     @FXML TextField txtMessageInput;
-    @FXML TextFlow txtChat;
+    @FXML WebView txtChat;
     @FXML Button btnBack;
     @FXML ImageView imgPlayerOne;
     @FXML ImageView imgPlayerTwo;
@@ -31,7 +32,7 @@ public class GameLobby {
     @FXML Label lblUsername;
 
     private static Socket socket;
-    private static String chat = "\n";
+    private static StringBuilder chat;
     public static String roomID;
     private static boolean isConnect = false;
 
@@ -51,7 +52,7 @@ public class GameLobby {
         }
         roomID = sb.toString();
         lbRoomID.setText(roomID);
-//        txtChat.setText(chat);
+        chat = new StringBuilder();
         System.out.println(roomID);
 
         if(isConnect){
@@ -84,7 +85,7 @@ public class GameLobby {
         socket.connect();
         pressEnterToSendMsg();
         isConnect = true;
-//        txtChat.setText(chat);
+        chat = new StringBuilder();
 
         socket.emit("joinRoom",
                 roomID, Main_login.user, Main_login.avt);
@@ -116,14 +117,12 @@ public class GameLobby {
     }
 
     private void makeChatLine(String username, String msg){
-        Text userNameText = new Text(username + ": ");
-        Text msgText = new Text("- " + msg + "\n");
-
-        userNameText.setFill(Color.RED);
-        msgText.setFill(Color.BLUE);
-
-        txtChat.getChildren().add(userNameText);
-        txtChat.getChildren().add(msgText);
+        chat.append("<p><span style=\"color:red; font-weight:bold\">")
+                .append(username)
+                .append(":</span> - ")
+                .append(msg)
+                .append("</p>\n");
+        txtChat.getEngine().loadContent(chat.toString());
     }
 
     private void setMessageListener(Socket socket){
