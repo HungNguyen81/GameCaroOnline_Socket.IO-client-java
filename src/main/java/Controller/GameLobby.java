@@ -98,8 +98,10 @@ public class GameLobby {
     public void sendMsg(){
         String msg = txtMessageInput.getText();
         txtMessageInput.setText("");
-        makeChatLine(Main_login.user, msg);
-        socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
+        if(!msg.equals("")){
+            makeChatLine(Main_login.user, msg);
+            socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
+        }
     }
 
     public void pressEnterToSendMsg(){
@@ -128,7 +130,10 @@ public class GameLobby {
     }
 
     public void backToHomeStage() throws IOException {
-        if(isConnect) socket.disconnect();
+        if(isConnect){
+            socket.disconnect();
+            isConnect = false;
+        }
         Main_login.gotoHomeStage();
     }
 }
