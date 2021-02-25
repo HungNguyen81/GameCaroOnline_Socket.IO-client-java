@@ -92,7 +92,7 @@ public class GameLobby {
         chat = new StringBuilder();
 
         socket.emit("joinRoom",
-                roomID, Main_login.user, Main_login.avt);
+                roomID, Main_login.user, "" + Main_login.avt);
         socket.on("confirmJoin", args -> {
             String res = args[0].toString();
 
