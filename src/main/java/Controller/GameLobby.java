@@ -103,7 +103,7 @@ public class GameLobby {
     public void sendMsg(){
         String msg = txtMessageInput.getText();
         txtMessageInput.setText("");
-        makeChatLine(chat, Main_login.user, msg);
+        makeChatLine(Main_login.user, msg);
         socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
     }
 
@@ -115,14 +115,15 @@ public class GameLobby {
         });
     }
 
-    private void makeChatLine(String chatContent, String username, String msg){
+    private void makeChatLine(String username, String msg){
         Text userNameText = new Text(username + ": ");
         Text msgText = new Text("- " + msg + "\n");
 
         userNameText.setFill(Color.RED);
         msgText.setFill(Color.BLUE);
 
-        txtChat.getChildren().addAll(userNameText, msgText);
+        txtChat.getChildren().add(userNameText);
+        txtChat.getChildren().add(msgText);
     }
 
     private void setMessageListener(Socket socket){
@@ -130,7 +131,7 @@ public class GameLobby {
             String username = args[0].toString();
             String replymsg = args[1].toString();
             System.out.println(username);
-            makeChatLine(chat, username, replymsg);
+            makeChatLine(username, replymsg);
         });
     }
 
