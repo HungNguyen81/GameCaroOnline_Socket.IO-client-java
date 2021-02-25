@@ -64,7 +64,13 @@ public class GameLobby {
         System.out.println("join room " + roomID);
         IO.Options options = IO.Options.builder().build();
         socket = IO.socket(URI.create(Main_login.hostUrl), options);
-        socket.connect();
+        if(isConnect){
+            socket.disconnect();
+            isConnect = false;
+        } else {
+            socket.connect();
+            isConnect = true;
+        }
         txtChat.setText(chat);
 
         socket.emit("joinRoom", roomID, Main_login.user, Main_login.avt);
