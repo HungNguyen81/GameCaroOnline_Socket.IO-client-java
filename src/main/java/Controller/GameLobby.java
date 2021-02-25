@@ -21,9 +21,24 @@ public class GameLobby {
 
     Socket socket;
     String chat = "\n";
-
     public static String roomID;
     private static boolean isConnect = false;
+
+    private void initSocket(){
+        IO.Options options = IO.Options.builder().build();
+        socket = IO.socket(URI.create(Main_login.hostUrl), options);
+    }
+
+    private void connectSocket(){
+        if(isConnect){
+            socket.disconnect();
+            isConnect = false;
+        }
+        else{
+            socket.connect();
+            isConnect = true;
+        }
+    }
 
     public void CreateRoom(){
         Main_login.userNumber = 1;
@@ -39,25 +54,13 @@ public class GameLobby {
         txtChat.setText(chat);
         System.out.println(roomID);
 
-        IO.Options options = IO.Options.builder().build();
-//        if(isConnect) {
-//            socket.disconnect();
-//            isConnect = false;
-//        }
-//        socket = IO.socket(URI.create(Main_login.hostUrl), options);
-//        if(!isConnect) {
-//            socket.connect();
-//            isConnect = true;
-//        }
-
-        if(isConnect)
-            socket.disconnect();
-        else
-            socket.connect();
+        initSocket();
+        connectSocket();
 
         txtChat.setText(chat);
         System.out.println("create room " + roomID);
-        socket.emit("createRoom", roomID, Main_login.user, Main_login.avt);
+        socket.emit("createRoom",
+                roomID, Main_login.user, Main_login.avt);
 
         btnSend.setVisible(true);
         setMessageListenner(socket);
@@ -66,23 +69,15 @@ public class GameLobby {
     public void JoinRoom(){
         Main_login.userNumber = 2;
         roomID = txtRoomID.getText();
-
+        lbRoomID.setText(roomID);
         System.out.println("join room " + roomID);
-//        IO.Options options = IO.Options.builder().build();
-//        socket = IO.socket(URI.create(Main_login.hostUrl), options);
-//        if(isConnect){
-//            socket.disconnect();
-//            isConnect = false;
-//        } else {
-//            socket.connect();
-//            isConnect = true;
-//        }
-        socket.disconnect();
-        socket.connect();
 
+        if(!isConnect) initSocket();
+        connectSocket();
         txtChat.setText(chat);
 
-        socket.emit("joinRoom", roomID, Main_login.user, Main_login.avt);
+        socket.emit("joinRoom",
+                roomID, Main_login.user, Main_login.avt);
         socket.on("confirmJoin", args -> {
             String res = args[0].toString();
             if(res.equals("1")){
