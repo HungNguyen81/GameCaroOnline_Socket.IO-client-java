@@ -37,12 +37,16 @@ public class GameLobby {
         socket = IO.socket(URI.create(Main_login.hostUrl), options);
     }
 
+    private void setupImageViewImg(ImageView imgV, int avt_id){
+        imgV.setImage(
+                new Image("img/avatar/"
+                        + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png"));
+    }
+
     public void initGameLobbyComponent(){
         lblUsername.setText(Main_login.user);
         int avt_id = Main_login.avt;
-        imgPlayerOne.setImage(
-                new Image("img/avatar/"
-                        + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png"));
+        setupImageViewImg(imgPlayerOne, avt_id);
     }
 
     public void CreateRoom(){
@@ -93,24 +97,22 @@ public class GameLobby {
 
         socket.emit("joinRoom",
                 roomID, Main_login.user, Main_login.avt);
-        socket.on("confirmJoin", args -> {
-            String res = args[0].toString();
-
-            if(res.equals("1")){
-                System.out.println("ok");
-                btnSend.setDisable(false);
-            } else {
-                System.out.println("failed");
-            }
-        });
-        setMessageListener(socket);
+//        socket.on("confirmJoin", args -> {
+//            String res = args[0].toString();
+//
+//            if(res.equals("1")){
+//                System.out.println("ok");
+//                btnSend.setDisable(false);
+//            } else {
+//                System.out.println("failed");
+//            }
+//        });
         setRoomFullListener(socket);
+        setMessageListener(socket);
     }
 
     private void setupP2info(String username, int avt_id){
-        imgPlayerTwo.setImage(
-                new Image("img/avatar/"
-                        + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png"));
+        setupImageViewImg(imgPlayerTwo, avt_id);
         lblPlayerTwoName.setText(username);
     }
 
@@ -126,8 +128,12 @@ public class GameLobby {
     private void setRoomFullListener(Socket socket){
         socket.on("roomFull", args -> {
             String username = args[0].toString();
-            int avt_id = Integer.parseInt(args[1].toString());
-            Platform.runLater(() -> setupP2info(username, avt_id));
+            try {
+                int avt_id = Integer.parseInt(args[1].toString());
+                Platform.runLater(() -> setupP2info(username, avt_id));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         });
     }
 
