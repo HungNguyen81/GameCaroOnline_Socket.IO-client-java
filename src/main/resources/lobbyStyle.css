@@ -16,6 +16,7 @@
 .text-area .scroll-pane {
     -fx-background-color: white;
     -fx-background-radius: 30;
+    -fx-padding: 15;
 }
 .text-area .scroll-pane .viewport{
     -fx-background-color: transparent;

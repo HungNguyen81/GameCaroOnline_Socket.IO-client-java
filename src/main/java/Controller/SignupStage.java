@@ -51,13 +51,10 @@ public class SignupStage {
         System.out.println("sign up : " + username + ", " + password);
         String res = new ConnectServer().createConnect(url, username, password, email, num);
         if(res.equals("Signup OK")){
-            try {
-                LocalCookieController.setCookie(username, password, num+"");
-            } catch (IOException err){
-                err.printStackTrace();
-            }
+            //                LocalCookieController.setCookie(username, password, num+"");
             Main_login.user = username;
             Main_login.email = email;
+            Main_login.avt = num;
             Main_login.gotoHomeStage();
         } else if(res.equals("400code:username")){
             new Alert(Alert.AlertType.WARNING,
