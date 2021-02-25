@@ -32,12 +32,9 @@ public class GameLobby {
     private void connectSocket(){
         if(isConnect){
             socket.disconnect();
-            isConnect = false;
         }
-        else{
-            socket.connect();
-            isConnect = true;
-        }
+        socket.connect();
+        isConnect = true;
     }
 
     public void CreateRoom(){
