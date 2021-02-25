@@ -40,15 +40,21 @@ public class GameLobby {
         System.out.println(roomID);
 
         IO.Options options = IO.Options.builder().build();
-        if(isConnect) {
+//        if(isConnect) {
+//            socket.disconnect();
+//            isConnect = false;
+//        }
+//        socket = IO.socket(URI.create(Main_login.hostUrl), options);
+//        if(!isConnect) {
+//            socket.connect();
+//            isConnect = true;
+//        }
+
+        if(isConnect)
             socket.disconnect();
-            isConnect = false;
-        }
-        socket = IO.socket(URI.create(Main_login.hostUrl), options);
-        if(!isConnect) {
+        else
             socket.connect();
-            isConnect = true;
-        }
+
         txtChat.setText(chat);
         System.out.println("create room " + roomID);
         socket.emit("createRoom", roomID, Main_login.user, Main_login.avt);
@@ -62,15 +68,18 @@ public class GameLobby {
         roomID = txtRoomID.getText();
 
         System.out.println("join room " + roomID);
-        IO.Options options = IO.Options.builder().build();
-        socket = IO.socket(URI.create(Main_login.hostUrl), options);
-        if(isConnect){
-            socket.disconnect();
-            isConnect = false;
-        } else {
-            socket.connect();
-            isConnect = true;
-        }
+//        IO.Options options = IO.Options.builder().build();
+//        socket = IO.socket(URI.create(Main_login.hostUrl), options);
+//        if(isConnect){
+//            socket.disconnect();
+//            isConnect = false;
+//        } else {
+//            socket.connect();
+//            isConnect = true;
+//        }
+        socket.disconnect();
+        socket.connect();
+
         txtChat.setText(chat);
 
         socket.emit("joinRoom", roomID, Main_login.user, Main_login.avt);
@@ -89,7 +98,7 @@ public class GameLobby {
     public void sendMsg(){
         String msg = txtMessageInput.getText();
         makeChatLine(chat, Main_login.user, msg);
-
+        txtMessageInput.setText("");
         socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
 //        setMessageListenner(socket);
     }
