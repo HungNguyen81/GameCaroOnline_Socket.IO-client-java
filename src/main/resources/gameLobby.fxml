@@ -140,7 +140,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="txtChat" editable="false" layoutX="314.0" layoutY="27.0" prefHeight="291.0" prefWidth="342.0" text="hello" wrapText="true" />
+                  <TextArea fx:id="txtChat" editable="false" layoutX="314.0" layoutY="27.0" prefHeight="291.0" prefWidth="342.0" wrapText="true" />
                </children>
             </Pane>
                 <HBox prefHeight="53.0" prefWidth="678.0" styleClass="footer">

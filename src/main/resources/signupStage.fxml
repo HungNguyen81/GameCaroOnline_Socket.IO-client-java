@@ -132,21 +132,19 @@
                         </GridPane>
                </left>
                <right>
-                  <GridPane prefHeight="171.0" prefWidth="194.0" BorderPane.alignment="CENTER">
+                  <GridPane prefHeight="249.0" prefWidth="233.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="0.0" prefWidth="20.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="71.0" minWidth="6.0" prefWidth="34.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="119.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="37.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="23.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="71.0" minWidth="1.0" prefWidth="55.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="101.0" />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="72.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="174.0" minHeight="10.0" prefHeight="149.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="100.0" valignment="TOP" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label prefHeight="65.0" prefWidth="114.0" text="Choose Your Avatar" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <ImageView fx:id="imgAdd" fitHeight="137.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" styleClass="img" GridPane.columnIndex="2">
+                        <Label prefHeight="65.0" prefWidth="114.0" text="Choose Your Avatar" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <ImageView fx:id="imgAdd" fitHeight="137.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" styleClass="img" GridPane.columnIndex="1">
                            <image>
                               <Image url="@img/avatar/06.png" />
                            </image>
@@ -154,12 +152,12 @@
                               <DropShadow height="8.86" radius="5.4475" width="14.93" />
                            </effect>
                         </ImageView>
-                        <ImageView fx:id="btnPrev" fitHeight="98.0" fitWidth="42.0" onMouseClicked="#prev" pickOnBounds="true" preserveRatio="true" styleClass="img" GridPane.columnIndex="1">
+                        <ImageView fx:id="btnPrev" fitHeight="98.0" fitWidth="42.0" onMouseClicked="#prev" pickOnBounds="true" preserveRatio="true" styleClass="img">
                            <image>
                               <Image url="@img/next.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="btnNext" fitHeight="98.0" fitWidth="42.0" layoutX="34.0" layoutY="64.0" onMouseClicked="#next" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;" styleClass="img" GridPane.columnIndex="3">
+                        <ImageView fx:id="btnNext" fitHeight="98.0" fitWidth="42.0" layoutX="34.0" layoutY="64.0" onMouseClicked="#next" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;" styleClass="img" GridPane.columnIndex="2">
                            <image>
                               <Image url="@img/next.png" />
                            </image>

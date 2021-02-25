@@ -102,7 +102,7 @@ public class GameLobby {
 //
 //            if(res.equals("1")){
 //                System.out.println("ok");
-//                btnSend.setDisable(false);
+                btnSend.setDisable(false);
 //            } else {
 //                System.out.println("failed");
 //            }
