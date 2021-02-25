@@ -2,6 +2,7 @@ package Controller;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -72,15 +73,7 @@ public class GameLobby {
 
         btnSend.setDisable(false);
         setMessageListener(socket);
-        socket.on("roomFull", args -> {
-            String username = args[0].toString();
-            int avt = Integer.parseInt(args[1].toString());
-
-            imgPlayerTwo.setImage(
-                    new Image("img/avatar/"
-                            + ((avt < 10)? "0" + avt : "" + avt) + ".png"));
-            lblPlayerTwoName.setText(username);
-        });
+        setRoomFullListener(socket);
     }
 
     public void JoinRoom(){
@@ -102,11 +95,7 @@ public class GameLobby {
                 roomID, Main_login.user, Main_login.avt);
         socket.on("confirmJoin", args -> {
             String res = args[0].toString();
-            int avt_id = Integer.parseInt(args[1].toString());
 
-            imgPlayerTwo.setImage(
-                    new Image("img/avatar/"
-                            + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png"));
             if(res.equals("1")){
                 System.out.println("ok");
                 btnSend.setDisable(false);
@@ -115,6 +104,14 @@ public class GameLobby {
             }
         });
         setMessageListener(socket);
+        setRoomFullListener(socket);
+    }
+
+    private void setupP2info(String username, int avt_id){
+        imgPlayerTwo.setImage(
+                new Image("img/avatar/"
+                        + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png"));
+        lblPlayerTwoName.setText(username);
     }
 
     public void sendMsg(){
@@ -125,6 +122,15 @@ public class GameLobby {
             socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
         }
     }
+
+    private void setRoomFullListener(Socket socket){
+        socket.on("roomFull", args -> {
+            String username = args[0].toString();
+            int avt_id = Integer.parseInt(args[1].toString());
+            Platform.runLater(() -> setupP2info(username, avt_id));
+        });
+    }
+
     private void setMessageListener(Socket socket){
         socket.on("newMsg", args -> {
             String username = args[0].toString();
