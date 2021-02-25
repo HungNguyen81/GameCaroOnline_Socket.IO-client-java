@@ -121,6 +121,9 @@ public class Main_login extends Application {
 
             stage.setScene(scene);
             stage.setTitle("CaroH - Game Lobby");
+
+            GameLobby gl = loader.getController();
+            gl.initGameLobbyComponent();
         } catch (Exception e){
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR,

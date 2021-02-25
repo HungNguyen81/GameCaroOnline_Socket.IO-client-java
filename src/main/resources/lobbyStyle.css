@@ -10,3 +10,17 @@
     -fx-background-color: #6ffcff;
     -fx-border-color: transparent;
 }
+.text-area{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}

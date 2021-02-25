@@ -4,6 +4,7 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import java.io.IOException;
@@ -35,6 +36,27 @@ public class GameLobby {
         socket = IO.socket(URI.create(Main_login.hostUrl), options);
     }
 
+    public void initGameLobbyComponent(){
+        lblUsername.setText(Main_login.user);
+        int avt_id = Main_login.avt;
+        imgPlayerOne.setImage(
+                new Image("img/avatar/"
+                        + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png"));
+        if(!isConnect){
+            // wait for other player join
+            initSocket();
+            socket.on("roomFull", args -> {
+                String username = args[0].toString();
+                int avt = Integer.parseInt(args[1].toString());
+
+                imgPlayerTwo.setImage(
+                        new Image("img/avatar/"
+                                + ((avt < 10)? "0" + avt : "" + avt) + ".png"));
+                lblPlayerTwoName.setText(username);
+            });
+        }
+    }
+
     public void CreateRoom(){
         Main_login.userNumber = 1;
         Random rand = new Random();
@@ -52,17 +74,16 @@ public class GameLobby {
         if(isConnect){
             socket.disconnect();
         }
-        initSocket();
+//        initSocket();
         socket.connect();
         pressEnterToSendMsg();
         isConnect = true;
 
-//        txtChat.setText(chat);
         System.out.println("create room " + roomID);
         socket.emit("createRoom",
                 roomID, Main_login.user, Main_login.avt);
 
-        btnSend.setVisible(true);
+        btnSend.setDisable(false);
         setMessageListener(socket);
     }
 
@@ -75,7 +96,7 @@ public class GameLobby {
         if(isConnect){
             socket.disconnect();
         }
-        initSocket();
+//        initSocket();
         socket.connect();
         pressEnterToSendMsg();
         isConnect = true;
@@ -87,7 +108,7 @@ public class GameLobby {
             String res = args[0].toString();
             if(res.equals("1")){
                 System.out.println("ok");
-                btnSend.setVisible(true);
+                btnSend.setDisable(false);
             } else {
                 System.out.println("failed");
             }
@@ -102,6 +123,15 @@ public class GameLobby {
             makeChatLine(Main_login.user, msg);
             socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
         }
+    }
+    private void setMessageListener(Socket socket){
+        socket.on("newMsg", args -> {
+            String username = args[0].toString();
+            String replymsg = args[1].toString();
+
+            System.out.println(username);
+            makeChatLine(username, replymsg);
+        });
     }
 
     public void pressEnterToSendMsg(){
@@ -118,15 +148,6 @@ public class GameLobby {
                 .append(msg)
                 .append("\n");
         txtChat.setText(chat.toString());
-    }
-
-    private void setMessageListener(Socket socket){
-        socket.on("newMsg", args -> {
-            String username = args[0].toString();
-            String replymsg = args[1].toString();
-            System.out.println(username);
-            makeChatLine(username, replymsg);
-        });
     }
 
     public void backToHomeStage() throws IOException {
