@@ -58,7 +58,7 @@ public class HomeStage {
     }
 
     private String getAvatarDir(int avt_id){
-        return "img/avatar/Avatars Set Flat Style-"
+        return "img/avatar/"
                 + ((avt_id < 10)? "0" + avt_id : "" + avt_id) + ".png";
     }
 

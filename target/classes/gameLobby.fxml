@@ -103,7 +103,7 @@
                      <children>
                         <ImageView fx:id="imgPlayerOne" fitHeight="93.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/avatar/Avatars%20Set%20Flat%20Style-05.png" />
+                              <Image url="@img/avatar/05.png" />
                            </image>
                            <effect>
                               <DropShadow />
@@ -122,7 +122,7 @@
                         </Label>
                         <ImageView fx:id="imgPlayerTwo" fitHeight="98.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                            <image>
-                              <Image url="@img/avatar/Avatars%20Set%20Flat%20Style-05.png" />
+                              <Image url="@img/avatar/05.png" />
                            </image>
                            <effect>
                               <DropShadow />

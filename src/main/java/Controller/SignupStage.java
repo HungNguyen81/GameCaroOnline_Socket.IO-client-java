@@ -22,7 +22,7 @@ public class SignupStage {
 
     public static int num = 6;
     final int MAX_NUM = 50;
-    final String imgPrefix = "Avatars Set Flat Style-";
+    final String imgPrefix = "";
 
     public void init(){
         Random rand = new Random();

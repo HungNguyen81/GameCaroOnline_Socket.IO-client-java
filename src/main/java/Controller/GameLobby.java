@@ -6,12 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import javafx.scene.web.WebView;
-
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Random;
