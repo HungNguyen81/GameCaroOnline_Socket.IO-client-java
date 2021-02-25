@@ -85,7 +85,7 @@ public class GameLobby {
         makeChatLine(chat, Main_login.user, msg);
 
         socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
-        setMessageListenner(socket);
+//        setMessageListenner(socket);
     }
 
     private void makeChatLine(String chatContent, String username, String msg){
