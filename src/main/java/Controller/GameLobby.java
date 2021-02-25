@@ -23,7 +23,7 @@ public class GameLobby {
     @FXML Label lbRoomID;
     @FXML Button btnSend;
     @FXML TextField txtMessageInput;
-    @FXML WebView txtChat;
+    @FXML TextArea txtChat;
     @FXML Button btnBack;
     @FXML ImageView imgPlayerOne;
     @FXML ImageView imgPlayerTwo;
@@ -117,12 +117,11 @@ public class GameLobby {
     }
 
     private void makeChatLine(String username, String msg){
-        chat.append("<p><span style=\"color:red; font-weight:bold\">")
-                .append(username)
-                .append(":</span> - ")
+        chat.append(username)
+                .append(": - ")
                 .append(msg)
-                .append("</p>\n");
-        txtChat.getEngine().loadContent(chat.toString());
+                .append("\n");
+        txtChat.setText(chat.toString());
     }
 
     private void setMessageListener(Socket socket){
