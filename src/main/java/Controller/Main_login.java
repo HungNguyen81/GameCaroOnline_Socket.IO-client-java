@@ -67,15 +67,7 @@ public class Main_login extends Application {
         Parent root = loader.load();
 
         //Make stage draggable
-        root.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-        root.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
-        });
-
+        makeDraggable(root);
         Scene scene = new Scene(root);
         HomeStage cc = loader.getController();
         cc.initComponent();
@@ -114,6 +106,7 @@ public class Main_login extends Application {
         FXMLLoader loader = new FXMLLoader(Main_login.class.getResource("/gameLobby.fxml"));
         try{
             Parent root = loader.load();
+            makeDraggable(root);
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
 
@@ -126,6 +119,18 @@ public class Main_login extends Application {
             alert.showAndWait();
         }
     }
+
+    public static void makeDraggable(Parent root){
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

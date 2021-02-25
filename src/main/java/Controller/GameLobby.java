@@ -19,8 +19,8 @@ public class GameLobby {
     @FXML TextArea txtChat;
     @FXML Label lblBack;
 
-    Socket socket;
-    String chat = "\n";
+    private static Socket socket;
+    private static String chat = "\n";
     public static String roomID;
     private static boolean isConnect = false;
 
@@ -33,8 +33,8 @@ public class GameLobby {
         if(isConnect){
             socket.disconnect();
         }
+        initSocket();
         socket.connect();
-        isConnect = true;
     }
 
     public void CreateRoom(){
@@ -51,8 +51,14 @@ public class GameLobby {
         txtChat.setText(chat);
         System.out.println(roomID);
 
+//        initSocket();
+//        connectSocket();
+        if(isConnect){
+            socket.disconnect();
+        }
         initSocket();
-        connectSocket();
+        socket.connect();
+        isConnect = true;
 
         txtChat.setText(chat);
         System.out.println("create room " + roomID);
@@ -69,8 +75,14 @@ public class GameLobby {
         lbRoomID.setText(roomID);
         System.out.println("join room " + roomID);
 
-        if(!isConnect) initSocket();
-        connectSocket();
+//        if(!isConnect) initSocket();
+//        connectSocket();
+        if(isConnect){
+            socket.disconnect();
+        }
+        initSocket();
+        socket.connect();
+        isConnect = true;
         txtChat.setText(chat);
 
         socket.emit("joinRoom",
