@@ -23,6 +23,8 @@ public class SignupStage {
     public static int num = 6;
     final int MAX_NUM = 50;
     final String imgPrefix = "";
+    final String USERNAME_PATTERN = "^(?=.*[A-Za-z@$!%*#?&0-9])[A-Za-z0-9@$!%*#?&]{1,20}$";
+    final String EMAIL_PATTERN = "^([a-zA-Z.0-9]+)@([a-z.0-9]+.+[a-z])$";
 
     public void init(){
         Random rand = new Random();
@@ -36,29 +38,70 @@ public class SignupStage {
         String cpassword = txtPasswordConfirm.getText();
         String email = txtEmail.getText();
 
+        Alert alert;
         if(username.equals("") || password.equals("")){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Bạn chưa nhập Tài khoản hoặc mật khẩu", ButtonType.OK);
+            alert = new Alert(Alert.AlertType.WARNING,
+                    "Bạn chưa nhập Tài khoản hoặc mật khẩu",
+                    ButtonType.OK);
             alert.showAndWait();
             return;
         }
 
         if(!password.equals(cpassword)){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Mật khẩu nhập lại không khớp.", ButtonType.OK);
+            alert = new Alert(Alert.AlertType.WARNING,
+                    "Mật khẩu nhập lại không khớp.",
+                    ButtonType.OK);
             alert.showAndWait();
             return;
         }
+
+        if(!username.matches(USERNAME_PATTERN)){
+            alert = new Alert(Alert.AlertType.INFORMATION,
+                    """
+                            Tên đăng nhập không hợp lệ!\s
+                            Chỉ được chứa các kí tự a-z, A-Z, 0-9
+                            và một vài kí tự đặc biệt như -, _, ., @, # """,
+                    ButtonType.OK);
+            alert.showAndWait();
+            txtUsername.setText("");
+            return;
+        } else if(password.length() < 6){
+            alert = new Alert(Alert.AlertType.INFORMATION,
+                    "Mật khẩu phải dài ít nhất 6 kí tự!",
+                    ButtonType.OK);
+            alert.showAndWait();
+            txtPassword.setText("");
+            txtPasswordConfirm.setText("");
+            return;
+        }
+        else if(!email.matches(EMAIL_PATTERN)){
+            alert = new Alert(Alert.AlertType.INFORMATION,
+                    """
+                            Email không hợp lệ!\s
+                            Vui lòng sử dụng một email hợp lệ. """,
+                    ButtonType.OK);
+            alert.showAndWait();
+            txtEmail.setText("");
+            return;
+        }
+
         String url = Main_login.hostUrl + "signup";
         System.out.println("sign up : " + username + ", " + password);
         String res = new ConnectServer().createConnect(url, username, password, email, num);
         if(res.equals("Signup OK")){
-            //                LocalCookieController.setCookie(username, password, num+"");
             Main_login.user = username;
             Main_login.email = email;
             Main_login.avt = num;
+            new Alert(Alert.AlertType.INFORMATION,
+                    "Đăng ký thành công! " +
+                            "\n- Tài khoản: " + username +
+                            "\n- Email: " + email,
+                    ButtonType.OK).showAndWait();
             Main_login.gotoHomeStage();
         } else if(res.equals("400code:username")){
             new Alert(Alert.AlertType.WARNING,
-                    "Tài khoản đã tồn tại\nVui lòng sử dụng tài khoản khác",
+                    "Tài khoản đã tồn tại\n"
+                            + "Vui lòng sử dụng tài khoản khác",
                     ButtonType.OK).showAndWait();
         }
     }

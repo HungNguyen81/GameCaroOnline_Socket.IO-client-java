@@ -131,7 +131,6 @@ public class GameLobby {
             String username = args[0].toString();
             String replymsg = args[1].toString();
 
-            System.out.println(username);
             makeChatLine(username, replymsg);
         });
     }

@@ -22,6 +22,11 @@ public class LoginStage {
         String res = new ConnectServer().createConnect(url, username, password);
         if(res.contains("Login OK")){
             try {
+                Alert a = new Alert(Alert.AlertType.INFORMATION,
+                        "Welcome " + username + "!",
+                        ButtonType.OK);
+                a.showAndWait();
+
                 String[] str = res.split(",");
                 String avt_id = str[1];
                 String email = (str.length < 3)? "no-email":str[2];

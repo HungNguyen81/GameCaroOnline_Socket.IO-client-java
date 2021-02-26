@@ -27,7 +27,6 @@ public class HomeStage {
     public void initComponent(){
         lb_username.setText(Main_login.user);
         String avtDir = getAvatarDir(Main_login.avt);
-        System.out.println(avtDir);
 
         Image img = new Image("img/game.png");
         ImageView newGameView = new ImageView(img);
@@ -104,6 +103,9 @@ public class HomeStage {
     }
 
     public void minimize(MouseEvent e){
-        ((Stage)((Label)e.getSource()).getScene().getWindow()).setIconified(true);
+        ((Stage)((Label)e.getSource())
+                .getScene()
+                .getWindow())
+                .setIconified(true);
     }
 }
