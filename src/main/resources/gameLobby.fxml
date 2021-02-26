@@ -60,7 +60,7 @@
                      <font>
                         <Font size="18.0" />
                      </font></TextField>
-                  <GridPane layoutX="85.0" layoutY="-42.0">
+                  <GridPane layoutX="86.0" layoutY="-39.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -127,7 +127,7 @@
                               <Insets />
                            </GridPane.margin>
                            <effect>
-                              <DropShadow />
+                              <DropShadow height="10.0" radius="4.5" width="10.0" />
                            </effect>
                         </Label>
                         <ImageView fx:id="imgPlayerTwo" fitHeight="98.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
