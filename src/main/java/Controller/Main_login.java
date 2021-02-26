@@ -16,7 +16,6 @@ public class Main_login extends Application {
     public static double xOffset = 0;
     public static double yOffset = 0;
     public static String user;
-    public static int userNumber;
     public static int avt;
     public static String email;
     public static String dir = System.getProperty("user.dir");

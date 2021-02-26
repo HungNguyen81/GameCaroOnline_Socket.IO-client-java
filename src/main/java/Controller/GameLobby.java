@@ -50,7 +50,6 @@ public class GameLobby {
     }
 
     public void CreateRoom(){
-        Main_login.userNumber = 1;
         Random rand = new Random();
 
         // create room id with 6 random number letters
@@ -81,7 +80,6 @@ public class GameLobby {
     }
 
     public void JoinRoom(){
-        Main_login.userNumber = 2;
         roomID = txtRoomID.getText();
         lbRoomID.setText(roomID);
         System.out.println("join room " + roomID);
@@ -97,16 +95,7 @@ public class GameLobby {
 
         socket.emit("joinRoom",
                 roomID, Main_login.user, Main_login.avt);
-//        socket.on("confirmJoin", args -> {
-//            String res = args[0].toString();
-//
-//            if(res.equals("1")){
-//                System.out.println("ok");
-                btnSend.setDisable(false);
-//            } else {
-//                System.out.println("failed");
-//            }
-//        });
+        btnSend.setDisable(false);
         setRoomFullListener(socket);
         setMessageListener(socket);
     }
@@ -121,7 +110,7 @@ public class GameLobby {
         txtMessageInput.setText("");
         if(!msg.equals("")){
             makeChatLine(Main_login.user, msg);
-            socket.emit("sendMsg", roomID, Main_login.userNumber, msg);
+            socket.emit("sendMsg", roomID, Main_login.user, msg);
         }
     }
 
