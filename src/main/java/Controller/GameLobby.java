@@ -77,7 +77,8 @@ public class GameLobby {
         btnSend.setDisable(false);
         setMessageListener(socket);
         setRoomFullListener(socket);
-        setJoinOrCreateRoomVisible(false);
+        setMemberLeftListener(socket);
+        setJoinOrCreateRoomVisible();
         new Alert(Alert.AlertType.INFORMATION,
                 "ID PHÒNG: " + roomID,
                 ButtonType.OK).showAndWait();
@@ -102,13 +103,14 @@ public class GameLobby {
         btnSend.setDisable(false);
         setRoomFullListener(socket);
         setMessageListener(socket);
-        setJoinOrCreateRoomVisible(false);
+        setMemberLeftListener(socket);
+        setJoinOrCreateRoomVisible();
     }
 
-    private void setJoinOrCreateRoomVisible(boolean visible){
-        txtRoomID.setVisible(visible);
-        btnCreate.setVisible(visible);
-        btnJoin.setVisible(visible);
+    private void setJoinOrCreateRoomVisible(){
+        txtRoomID.setVisible(false);
+        btnCreate.setVisible(false);
+        btnJoin.setVisible(false);
     }
 
     private void setupP2info(String username, int avt_id){
@@ -134,6 +136,12 @@ public class GameLobby {
             } catch (Exception e){
                 e.printStackTrace();
             }
+        });
+    }
+
+    private void setMemberLeftListener(Socket socket){
+        socket.on("memberLeft", args -> {
+            setupP2info("NGƯỜI CHƠI 2", 0);
         });
     }
 
