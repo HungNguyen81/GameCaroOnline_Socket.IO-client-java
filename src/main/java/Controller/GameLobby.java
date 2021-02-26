@@ -141,7 +141,7 @@ public class GameLobby {
 
     private void setMemberLeftListener(Socket socket){
         socket.on("memberLeft", args -> {
-            setupP2info("NGƯỜI CHƠI 2", 0);
+            Platform.runLater(() -> setupP2info("NGƯỜI CHƠI 2", 0));
         });
     }
 
