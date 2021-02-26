@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="CaroH - Online Game">
+    <output-path>$PROJECT_DIR$/out/artifacts/CaroH___Online_Game</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="Controller.Main_login" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="deb" />
+        <option name="title" value="CaroH v1.0" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="CaroH___Online_Game.jar">
+        <element id="module-output" name="CaroH - Online Game" />
+      </element>
+    </root>
+  </artifact>
+</component>
