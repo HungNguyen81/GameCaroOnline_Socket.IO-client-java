@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -41,17 +42,23 @@
                      </font>
                      <effect>
                         <DropShadow />
-                     </effect></Button>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <Button fx:id="btnJoin" layoutX="164.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#JoinRoom" prefHeight="56.0" prefWidth="99.0" text="VÀO PHÒNG" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <effect>
                         <DropShadow />
-                     </effect></Button>
-                  <TextField fx:id="txtRoomID" alignment="CENTER" layoutX="37.0" layoutY="255.0" prefHeight="46.0" prefWidth="224.0" promptText="Room ID" style="-fx-border-radius: 20; -fx-background-radius: 20;">
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <TextField fx:id="txtRoomID" alignment="CENTER" blendMode="MULTIPLY" layoutX="37.0" layoutY="255.0" prefHeight="46.0" prefWidth="224.0" promptText="Nhập ID phòng" style="-fx-border-radius: 20; -fx-background-radius: 20;">
                      <font>
-                        <Font size="17.0" />
+                        <Font size="18.0" />
                      </font></TextField>
                   <GridPane layoutX="85.0" layoutY="-42.0">
                      <columnConstraints>
@@ -82,10 +89,13 @@
                         <Font size="17.0" />
                      </font></Button>
                   <Label layoutX="449.0" text="--- Chat ----" />
-                  <Button fx:id="btnBack" alignment="CENTER" layoutX="26.0" layoutY="-14.0" mnemonicParsing="false" onMouseClicked="#backToHomeStage" prefHeight="40.0" prefWidth="42.0" styleClass="btnBack" stylesheets="@lobbyStyle.css" text="&lt;" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnBack" alignment="CENTER" layoutX="26.0" layoutY="-14.0" mnemonicParsing="false" onMouseClicked="#backToHomeStage" prefHeight="40.0" prefWidth="42.0" styleClass="btnBack" stylesheets="@lobbyStyle.css" text="←" textAlignment="CENTER" wrapText="true">
                      <effect>
                         <DropShadow />
-                     </effect></Button>
+                     </effect>
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
                   <TextField fx:id="txtMessageInput" layoutX="314.0" layoutY="326.0" prefHeight="56.0" prefWidth="246.0" promptText="Type here to chat" style="-fx-background-radius: 20; -fx-border-radius: 20;">
                      <font>
                         <Font size="22.0" />

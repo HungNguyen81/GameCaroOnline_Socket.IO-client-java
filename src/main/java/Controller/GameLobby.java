@@ -77,6 +77,10 @@ public class GameLobby {
         btnSend.setDisable(false);
         setMessageListener(socket);
         setRoomFullListener(socket);
+        setJoinOrCreateRoomVisible(false);
+        new Alert(Alert.AlertType.INFORMATION,
+                "ID PHÒNG: " + roomID,
+                ButtonType.OK).showAndWait();
     }
 
     public void JoinRoom(){
@@ -98,6 +102,13 @@ public class GameLobby {
         btnSend.setDisable(false);
         setRoomFullListener(socket);
         setMessageListener(socket);
+        setJoinOrCreateRoomVisible(false);
+    }
+
+    private void setJoinOrCreateRoomVisible(boolean visible){
+        txtRoomID.setVisible(visible);
+        btnCreate.setVisible(visible);
+        btnJoin.setVisible(visible);
     }
 
     private void setupP2info(String username, int avt_id){
