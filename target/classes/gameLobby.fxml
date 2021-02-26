@@ -35,14 +35,14 @@
                 </HBox>
             <Pane prefHeight="417.0" prefWidth="678.0" style="-fx-background-color: #6db5ca;">
                <children>
-                  <Button fx:id="btnCreate" layoutX="40.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#CreateRoom" prefHeight="56.0" prefWidth="99.0" text="Tạo phòng" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnCreate" layoutX="40.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#CreateRoom" prefHeight="56.0" prefWidth="99.0" text="TẠO PHÒNG" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                  <Button fx:id="btnJoin" layoutX="164.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#JoinRoom" prefHeight="56.0" prefWidth="99.0" text="Vào phòng" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnJoin" layoutX="164.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#JoinRoom" prefHeight="56.0" prefWidth="99.0" text="VÀO PHÒNG" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -74,14 +74,14 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Button fx:id="btnSend" layoutX="578.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#sendMsg" prefHeight="56.0" prefWidth="82.0" text="SEND" wrapText="true">
+                  <Button fx:id="btnSend" disable="true" layoutX="575.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#sendMsg" prefHeight="46.0" prefWidth="82.0" text="SEND" wrapText="true">
                      <effect>
                         <DropShadow />
                      </effect>
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Label layoutX="449.0" layoutY="9.0" text="--- Chat ----" />
+                  <Label layoutX="449.0" text="--- Chat ----" />
                   <Button fx:id="btnBack" alignment="CENTER" layoutX="26.0" layoutY="-14.0" mnemonicParsing="false" onMouseClicked="#backToHomeStage" prefHeight="40.0" prefWidth="42.0" styleClass="btnBack" stylesheets="@lobbyStyle.css" text="&lt;" textAlignment="CENTER" wrapText="true">
                      <effect>
                         <DropShadow />
@@ -103,7 +103,7 @@
                      <children>
                         <ImageView fx:id="imgPlayerOne" fitHeight="93.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/avatar/05.png" />
+                              <Image url="@img/avatar/00.png" />
                            </image>
                            <effect>
                               <DropShadow />
@@ -122,14 +122,17 @@
                         </Label>
                         <ImageView fx:id="imgPlayerTwo" fitHeight="98.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                            <image>
-                              <Image url="@img/avatar/05.png" />
+                              <Image url="@img/avatar/00.png" />
                            </image>
                            <effect>
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <Label fx:id="lblPlayerOneName" text="YOU" GridPane.rowIndex="1" />
-                        <Label fx:id="lblPlayerTwoName" text="Player 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label fx:id="lblPlayerOneName" text="BẠN" textFill="RED" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="lblPlayerTwoName" text="NGƯỜI CHƠI 2" textFill="#034d8a" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <Label fx:id="lblUsername" layoutX="86.0" layoutY="7.0" text="username" textFill="#fc3e3e">
