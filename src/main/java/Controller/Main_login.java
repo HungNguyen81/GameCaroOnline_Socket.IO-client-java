@@ -19,7 +19,7 @@ public class Main_login extends Application {
     public static int avt;
     public static String email;
     public static String dir = System.getProperty("user.dir");
-    public static String hostUrl = "http://localhost:3000/";
+    public static String hostUrl = "https://caroh-game.herokuapp.com/";
     public static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception{
