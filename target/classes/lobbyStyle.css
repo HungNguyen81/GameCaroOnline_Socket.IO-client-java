@@ -1,5 +1,5 @@
 .button{
-    -fx-background-color: #6ffcca;
+    -fx-background-color: #e9775f;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 100;
@@ -7,6 +7,25 @@
 .button:hover{
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
-    -fx-background-color: #6ffcff;
+    -fx-background-color:  #e9775f;
     -fx-border-color: transparent;
+}
+.text-area{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-padding: 15;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-field {
+
 }
