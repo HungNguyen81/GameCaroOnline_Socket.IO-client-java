@@ -23,7 +23,7 @@ public class SignupStage {
     public static int num = 6;
     final int MAX_NUM = 50;
     final String imgPrefix = "";
-    final String USERNAME_PATTERN = "^(?=.*[A-Za-z@$!%*#?&0-9])[A-Za-z0-9@$!%*#?&]{1,20}$";
+    final String USERNAME_PATTERN = "([a-zA-Z.@#0-9_-]+)$";//"^(?=.*[A-Za-z@$!%*#?&0-9])[A-Za-z0-9@$!%*#?&]{1,20}$";
     final String EMAIL_PATTERN = "^([a-zA-Z.0-9]+)@([a-z.0-9]+.+[a-z])$";
 
     public void init(){
